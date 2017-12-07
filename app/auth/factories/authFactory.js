@@ -6,13 +6,13 @@ angular.module("TaxiProApp")
         if (user) {
             currentUserData = user
 
-            if ($location.url() !== "/getStarted") {
-                $timeout(function () {
-                    $location.url("/getStarted")
-                }, 100)
-            } else {
+            // if ($location.url() !== "/getStarted") {
+            //     $timeout(function () {
+            //         $location.url("/getStarted")
+            //     }, 100)
+            // } else {
                 $route.reload()
-            }
+            // }
 
         } else {
             currentUserData = null

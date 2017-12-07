@@ -41,3 +41,7 @@ angular.module("TaxiProApp").config(function ($routeProvider) {
         })
         .otherwise('/signIn')
 })
+
+angular.module("TaxiProApp").run(function (FIREBASE_CONFIG) {
+    firebase.initializeApp(FIREBASE_CONFIG)
+})

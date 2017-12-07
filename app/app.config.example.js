@@ -7,6 +7,3 @@ angular.module("TaxiProApp").constant("FIREBASE_CONFIG", {
     messagingSenderId: ""
 })
 
-angular.module("TaxiProApp").run(function (FIREBASE_CONFIG) {
-    firebase.initializeApp(FIREBASE_CONFIG)
-})
