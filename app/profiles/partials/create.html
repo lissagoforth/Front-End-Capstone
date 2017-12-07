@@ -1,0 +1,23 @@
+<h2>Create New Student Profile</h2>
+<form ng-submit="addStudentProfile()">
+    <div>
+        First name: <input type="text" ng-model="student.firstName" autofocus>
+    </div>
+    <div>
+        Last name: <input type="text" ng-model="student.lastName">
+    </div>
+    <div>
+        Address: <input type="text" ng-model="student.address">
+    </div>
+    <div>
+        Phone: <input type="tel" ng-model="student.phone">
+    </div>
+    <div>
+        Notes: <textarea rows="4" cols="50" type="text" ng-model="student.notes" placeholder="Add any additional notes about the student here.">
+    </div>
+    <button>Create Profile</button>
+</form>
+
+<button ng-click="displayAdminOpt()">Save</button>
+
+<button ng-click="startCourse(profile)">View Existing Profiles</button>

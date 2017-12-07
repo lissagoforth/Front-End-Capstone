@@ -10,7 +10,7 @@ angular.module("TaxiProApp")
         $scope.logIn = function () {
             AuthFactory.authenticate($scope.auth).then(function (didLogin) {
                 $scope.login = {}
-                // $location.url("/getStarted")
+                $location.url("/")
             })
         }
 
@@ -23,6 +23,6 @@ angular.module("TaxiProApp")
             } else {
                 alert("Password rejected. Cannot be authorized")
             }
+            $location.url("/")
         }
-
     })

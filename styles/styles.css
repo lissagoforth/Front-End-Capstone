@@ -15,3 +15,9 @@ nav > ul > li {
 .align-right {
     margin: 0 0 0 70px;
   }
+
+.adminOpt {
+    align-content: center;
+    margin: 25px;
+    padding: 10px 25px;
+}

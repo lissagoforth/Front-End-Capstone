@@ -1,0 +1,4 @@
+<h3>Student Profiles</h3>
+<div ng-repeat="student in profiles">
+    <a href="#!/profiles/detail/{{ student.id }}">{{ student.firstName }} {{ student.lastName }} {{ student.phone }}</a>
+</div>

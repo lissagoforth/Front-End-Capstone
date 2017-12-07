@@ -15,26 +15,21 @@ angular.module("TaxiProApp").config(function ($routeProvider) {
      * Configure all Angular application routes here
      */
     $routeProvider
-        // .when("/", {
-        //     templateUrl: "app/employees/partials/list.html",
-        //     controller: "EmployeeListCtrl",
-        //     resolve: { isAuth }
-        // })
-        // .when("/employees/list", {
-        //     templateUrl: "app/employees/partials/list.html",
-        //     controller: "EmployeeListCtrl",
-        //     resolve: { isAuth }
-        // })
-        // .when('/employees/new', {
-        //     templateUrl: 'app/employees/partials/create.html',
-        //     controller: 'EmployeeCreateCtrl',
-        //     resolve: { isAuth }
-        // })
-        // .when('/employees/detail/:employeeId', {
-        //     templateUrl: 'app/employees/partials/detail.html',
-        //     controller: 'EmployeeDetailCtrl',
-        //     resolve: { isAuth }
-        // })
+        .when("/profiles/list", {
+            templateUrl: "app/profiles/partials/list.html",
+            controller: "listProfilesCtrl",
+            resolve: { isAuth }
+        })
+        .when("/profiles/new", {
+            templateUrl: "app/profiles/partials/create.html",
+            controller: "createProfileCtrl",
+            resolve: { isAuth }
+        })
+        .when('/profiles/detail/:profileId', {
+            templateUrl: 'app/profiles/partials/detail.html',
+            controller: 'profileDetailCtrl',
+            resolve: { isAuth }
+        })
         .when('/signIn', {
             templateUrl: 'app/auth/partials/signIn.html',
             controller: 'AuthCtrl'
