@@ -1,0 +1,17 @@
+nav > ul {
+    padding: 0 10px 0 0;
+}
+
+nav > ul > li {
+    padding: 0 10px 0 0;
+    display: inline;
+    list-style-type: none;
+}
+
+.align-left {
+    margin: 0 25px 25px 0;
+}
+
+.align-right {
+    margin: 0 0 0 70px;
+  }
