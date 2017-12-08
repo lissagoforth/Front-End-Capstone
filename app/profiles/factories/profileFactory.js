@@ -42,8 +42,7 @@ angular
                             "firstName": student.firstName,
                             "lastName": student.lastName,
                             "address": student.address,
-                            "phone": student.phone,
-                            "notes": student.notes
+                            "phone": student.phone
                         }
                     })
                 }
@@ -56,6 +55,17 @@ angular
                     })
                     console.log(result)
                     return result
+                }
+            },
+            "addNote": {
+                value: function (note, key) {
+                    return $http({
+                        method: "POST",
+                        url: `https://front-end-capstone-6732d.firebaseio.com/profiles/${key}.json`,
+                        data: {
+                            "note": something//"grab note content" 
+                        }
+                    })
                 }
             },
             "remove": {

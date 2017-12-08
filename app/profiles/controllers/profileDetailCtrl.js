@@ -9,6 +9,9 @@ function ($scope, $location, $routeParams, profileFactory) {
     })
 
     // $scope.startCourse = () =>
+    //profileFactory.addNote(note,key).then() {
+    //  $location.url("/profiles/detail/:studentId")
+    //}
 
 
 

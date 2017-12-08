@@ -25,4 +25,9 @@ angular.module("TaxiProApp")
             }
             $location.url("/")
         }
+
+        $scope.addUser = function (user) {
+            AuthFactory.addUser(user)
+            
+        }
     })

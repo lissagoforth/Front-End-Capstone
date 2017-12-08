@@ -2,5 +2,5 @@
     <input type="email" placeholder="Email address" ng-model="auth.email" autofocus>
     <input type="password" placeholder="Password" ng-model="auth.password"><br>
     <button ng-click="logIn(auth)">Login</button>
-    <button ng-click="newUser(auth)">New User</button>
+    <button ng-click="newUser(auth); addUser(auth.email) ">New User</button>
 </div>

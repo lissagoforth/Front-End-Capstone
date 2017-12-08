@@ -6,13 +6,11 @@ angular.module("TaxiProApp")
                 "firstName": $scope.student.firstName,
                 "lastName": $scope.student.lastName,
                 "address": $scope.student.address,
-                "phone": $scope.student.phone,
-                "notes": $scope.student.notes
+                "phone": $scope.student.phone
             }
 
-            profileFactory.add(student).then(() => {
-                $location.url("/")
-            })
+            profileFactory.add(student)
+
         }
 
         $scope.displayAdminOpt = function () {
