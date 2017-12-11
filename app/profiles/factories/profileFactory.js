@@ -45,10 +45,10 @@ angular
                 }
             },
             "getNotes": {
-                value: function (studentId) {
+                value: function (studentId  ) {
                     return $http({
                         method: "GET", 
-                        url: `https://front-end-capstone-6732d.firebaseio.com/Notes/.json?orderBy="studentId"&equalTo"${studentId}"`
+                        url: `https://front-end-capstone-6732d.firebaseio.com/Notes/.json?orderBy="studentId"&equalTo="${studentId}"`
                     })
                 }
             },

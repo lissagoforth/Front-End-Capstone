@@ -46,7 +46,6 @@ angular.module("TaxiProApp")
             },
             addUser: {
                 value: function (user, userName) { //add authorized user to firebase DB
-                console.log(user)
                     return $http({
                         method: "POST",
                         url: "https://front-end-capstone-6732d.firebaseio.com/authUsers/.json",
