@@ -1,5 +1,7 @@
-<div>
-        Notes: <textarea rows="4" cols="40" type="text" ng-model="student.notes" placeholder="Add any additional notes about the student here."></textarea>
-        <button ng-click="addStudentNote()">Save Profile and Begin Course</button>
+<h1>{{ student.firstName }} {{ student.lastName }}</h1>
+<p>{{ student.address }}</p>
+<p>{{ student.phone }}</p>
+Notes: <textarea rows="4" cols="40" type="text" ng-model="student.notes" placeholder="Add any additional notes about the student here."></textarea><br>
+        <button ng-click="addStudentNote()">Save Notes</button>
 </div>
-<button ng-click="startCourse(profile)">Save Profile and Begin Course</button>
+<button ng-click="startCourse()">Begin Course</button>

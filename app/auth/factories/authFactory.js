@@ -31,7 +31,7 @@ angular.module("TaxiProApp")
                 }
             },
             getUser: {
-                value: () => firebase.auth().currentUser
+                value: () => currentUserData
             },
             logout: {
                 value: () => firebase.auth().signOut()

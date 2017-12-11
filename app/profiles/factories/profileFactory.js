@@ -10,12 +10,13 @@ angular
                 value: function () {
                     return $http({
                         method: "GET",
-                        url: "https://front-end-capstone-6732d.firebaseio.com/.json"
+                        url: "https://front-end-capstone-6732d.firebaseio.com/Profiles/.json"
                     }).then(response => {
                         const data = response.data
 
                         this.cache = Object.keys(data).map(key => {
                             data[key].id = key
+                            // console.log(data[key])
                             return data[key]
                         })
 
@@ -27,8 +28,9 @@ angular
                 value: function (key) {
                     return $http({
                         method: "GET",
-                        url: `https://front-end-capstone-6732d.firebaseio.com/${key}.json`
+                        url: `https://front-end-capstone-6732d.firebaseio.com/Profiles/${key}.json`
                     }).then(response => {
+                        // console.log(response.data)
                         return response.data
                     })
                 }
@@ -37,13 +39,8 @@ angular
                 value: function (student) {
                     return $http({
                         method: "POST",
-                        url: "https://front-end-capstone-6732d.firebaseio.com/profiles/.json",
-                        data: {
-                            "firstName": student.firstName,
-                            "lastName": student.lastName,
-                            "address": student.address,
-                            "phone": student.phone
-                        }
+                        url: "https://front-end-capstone-6732d.firebaseio.com/Profiles/.json",
+                        data: student
                     })
                 }
             },
@@ -58,13 +55,11 @@ angular
                 }
             },
             "addNote": {
-                value: function (note, key) {
+                value: function (note) {
                     return $http({
                         method: "POST",
-                        url: `https://front-end-capstone-6732d.firebaseio.com/profiles/${key}.json`,
-                        data: {
-                            "note": something//"grab note content" 
-                        }
+                        url: `https://front-end-capstone-6732d.firebaseio.com/Notes/.json`,
+                        data: note
                     })
                 }
             },
@@ -72,7 +67,7 @@ angular
                 value: function (key) {
                     return $http({
                         method: "DELETE",
-                        url: `https://front-end-capstone-6732d.firebaseio.com/profiles/${key}/.json`,
+                        url: `https://front-end-capstone-6732d.firebaseio.com/Students/${key}/.json`,
                     })
                 }
             }
