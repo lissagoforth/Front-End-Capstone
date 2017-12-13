@@ -39,6 +39,10 @@ angular.module("TaxiProApp").config(function ($routeProvider) {
             templateUrl: 'app/auth/partials/signIn.html',
             controller: 'AuthCtrl'
         })
+        .when('/startCourse', {
+            templateUrl: 'app/course/questions/partials/question.html',
+            controller: 'questionCtrl'
+        })
         .otherwise('/signIn')
 })
 

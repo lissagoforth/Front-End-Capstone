@@ -1,7 +1,7 @@
 angular
     .module("TaxiProApp")
     .controller("profileDetailCtrl",
-    function ($scope, $location, $routeParams, profileFactory, AuthFactory) {
+    function ($scope, $location, $routeParams, profileFactory, AuthFactory, questionFactory) {
         $scope.student = {}
 
         profileFactory.single($routeParams.studentId).then(student => {
@@ -55,5 +55,8 @@ angular
         }
 
 
-        // $scope.startCourse = () =>
+        $scope.startCourse =  function () {
+            $location.url("/startCourse")
+            questionFactory.getQuestions()
+        }
     })
