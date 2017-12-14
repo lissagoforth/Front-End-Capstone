@@ -62,9 +62,6 @@ angular
                 })
             }
         },
-        "evaluate": {
-            //query the isCorrect key, if true push to 'you got it right' array, else push to 'you got it wrong' array
-            //display as # you got right out of total(30)
-        }
+        
     })
 })

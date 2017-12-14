@@ -11,41 +11,8 @@
 <!-- <div ng-if=""> display for when answers are true/false -->
 <ul>
     <li ng-repeat="answer in answers">
-        <input type="radio" name="answerList" value="{{ answer.answerID }}">
+        <input type="radio" ng-model="monkeyButt.value" value="{{ answer.answerID }}">
         <label>{{ answer.content }}</label>
     </li>
 </ul>
 <button ng-click="nextQuestion()">Next</button>
-
-
-
-<!-- <button ng-click="nextQuestion()">Next</button> -->
-<!-- </div> -->
-
-<!-- <div ng-if=""> display for when answers are multiple choice -->
-<!-- <ul>
-    <span>
-        <input type="radio">
-        <label>{{  }}</label>
-    </span>
-</ul>
-<ul>
-    <span>
-        <input type="radio">
-        <label>{{  }}</label>
-    </span>
-</ul>
-<ul>
-    <span>
-        <input type="radio">
-        <label>{{  }}</label>
-    </span>
-</ul>
-<ul>
-    <span>
-        <input type="radio">
-        <label>{{  }}</label>
-    </span>
-</ul>
-<button ng-click="nextQuestion()">Next</button>
-</div> -->
