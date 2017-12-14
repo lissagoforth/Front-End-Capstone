@@ -9,10 +9,16 @@
 
 <!-- display all answers options with matching questionID -->
 <!-- <div ng-if=""> display for when answers are true/false -->
-<select ng-options="">
-    
-</select>
+<ul>
+    <li ng-repeat="answer in answers">
+        <input type="radio" name="answerList" value="{{ answer.answerID }}">
+        <label>{{ answer.content }}</label>
+    </li>
+</ul>
 <button ng-click="nextQuestion()">Next</button>
+
+
+
 <!-- <button ng-click="nextQuestion()">Next</button> -->
 <!-- </div> -->
 
