@@ -4,6 +4,7 @@ angular
     function ($scope, questionFactory) {
         let questions = null
         let answers = null
+        let videos = null
         $scope.monkeyButt = {
             value: null
         }
@@ -24,6 +25,13 @@ angular
             })
 
         })
+        questionFactory.getVideos().then((response) => {
+            videos = response
+            console.log(videos)
+            return videos
+        })
+        
+
         let count = 0
         let questionGenerator = function () {
             $scope.question = questions[count]
@@ -35,7 +43,7 @@ angular
         $scope.nextQuestion = function () {
             count++
             questionGenerator()
-            console.log($scope.monkeyButt.value)
+            // console.log($scope.monkeyButt.value)
         }
 
     })

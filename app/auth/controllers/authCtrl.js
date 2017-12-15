@@ -31,7 +31,7 @@ angular.module("TaxiProApp")
 
         function addUser() {
             let user = AuthFactory.getUser()
-            console.log("addUser function: ", user)
+            // console.log("addUser function: ", user)
             //prompt for first and last name of user
             let userName = prompt("Please enter your name", "Example: John Doe")
             //add authorized user to firebase db

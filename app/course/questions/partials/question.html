@@ -1,9 +1,14 @@
 <!-- header -->
-<h1>Taxi-Pro</h1>
+<h1> Welcome to the Taxi-Pro Course, {{student.firstName}} {{student.lastName}}</h1>
+
+<!-- Only show the first time, hide when they begin test-->
+<p>The Taxi-Pro course is comprised of two tests. You will begin by watching a number of videos. After each video you will be presented with a short quiz. This quiz is only for your benefit and will NOT go towards your final test grade. After the last video/quiz the test will begin.</p>
+<button ng-click="">Begin</button> <!-- on click hide above paragraph, show first video
 
 <!-- show progress i.e. question 1 of 30 -->
 <!-- <h3> Question {{ # }} of 30 </h3> -->
 
+<!-- Hide until student clicks "Begin Test" -->
 <!-- display question -->
 <h3>{{ question.content }}</h3>
 
