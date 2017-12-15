@@ -16,7 +16,7 @@ angular.module("TaxiProApp")
 
             } else {
                 currentUserData = null
-                console.log("User is not authenticated")
+                // console.log("User is not authenticated")
                 $timeout(function () {
                     $location.url("/signIn")
                 }, 100)
