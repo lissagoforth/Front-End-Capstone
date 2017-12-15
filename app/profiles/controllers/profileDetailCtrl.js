@@ -22,40 +22,45 @@ angular
         })
 
         $scope.addStudentNote = function () {
-            const user = AuthFactory.getUser()
-            const key = $routeParams.studentId
-            AuthFactory.getUserName(user.uid)
-                .then(response => {
-                    let userName = ""
-                    for (let key in response.data) {
-                        userName = response.data[key].userName
-                    }
-                    const note = {
-                        "note": $scope.student.notes,
-                        "studentId": key,
-                        "authName": userName
-                    }
-                    profileFactory.addNote(note).then(() => {
-                        $scope.student.note = ""
-                    }).then(() => {
+            if ($scope.student.notes === undefined) {
+                alert("Note field blank. Please add a note before saving.")
+            } else {
+                const user = AuthFactory.getUser()
+                const key = $routeParams.studentId
+                AuthFactory.getUserName(user.uid)
+                    .then(response => {
+                        let userName = ""
+                        for (let key in response.data) {
+                            userName = response.data[key].userName
+                        }
+                        const note = {
+                            "note": $scope.student.notes,
+                            "studentId": key,
+                            "authName": userName
+                        }
 
-                        profileFactory.getNotes($routeParams.studentId).then(response => {
-                            $scope.notes = []
-                            for (let key in response.data) {
-                                let note = {
-                                    "note": response.data[key].note,
-                                    "author": response.data[key].authName
+                        profileFactory.addNote(note).then(() => {
+                            $scope.student.note = ""
+                        }).then(() => {
+
+                            profileFactory.getNotes($routeParams.studentId).then(response => {
+                                $scope.notes = []
+                                for (let key in response.data) {
+                                    let note = {
+                                        "note": response.data[key].note,
+                                        "author": response.data[key].authName
+                                    }
+                                    $scope.notes.push(note)
                                 }
-                                $scope.notes.push(note)
-                            }
-                        })
+                            })
 
+                        })
                     })
-                })
+            }
         }
 
 
-        $scope.startCourse =  function () {
+        $scope.startCourse = function () {
             $location.url("/startCourse")
             questionFactory.getQuestions()
         }

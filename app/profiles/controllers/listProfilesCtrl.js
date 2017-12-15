@@ -4,7 +4,6 @@ angular.module("TaxiProApp")
         $scope.profiles = []
 
         profileFactory.list().then(data => {
-            console.log(data)
             $timeout()
             
             $scope.profiles = data
