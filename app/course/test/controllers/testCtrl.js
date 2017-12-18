@@ -1,21 +1,21 @@
 angular
     .module("TaxiProApp")
-    .controller("questionCtrl",
-    function ($scope, questionFactory) {
+    .controller("testCtrl",
+    function ($scope, testFactory) {
         let questions = null
         let answers = null
         let videos = null
         $scope.monkeyButt = {
             value: null
         }
-        // get all questions and answers from questionFactory
-        questionFactory.getQuestions().then((response) => {
+        // get all questions and answers from testFactory
+        testFactory.getQuestions().then((response) => {
             questions = response
             // console.log("got the questions")
             return questions
 
         }).then(questions => {
-            questionFactory.getAnswers().then((response) => {
+            testFactory.getAnswers().then((response) => {
                 answers = response
                 // console.log("got the answers")
                 return answers
@@ -25,9 +25,10 @@ angular
             })
 
         })
-        questionFactory.getVideos().then((response) => {
+        testFactory.getVideos().then((response) => {
             videos = response
             console.log(videos)
+            $scope.videos = videos[0]
             return videos
         })
         

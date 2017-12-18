@@ -6,6 +6,10 @@ angular
                 value: null,
                 writable: true
             },
+            "studentCache": {
+                value: null,
+                writable: true
+            },
             "list": {
                 value: function () {
                     return $http({
@@ -71,11 +75,34 @@ angular
                     })
                 }
             },
-            "remove": {
+            // "remove": {
+            //     value: function (key) {
+            //         return $http({
+            //             method: "DELETE",
+            //             url: `https://front-end-capstone-6732d.firebaseio.com/Students/${key}/.json`,
+            //         })
+            //     }
+            // },
+            "setCurrentStudent": {
+                value: function (key) {
+                    this.student = key
+                }
+            },
+            "addCourseResult": {
+                value: function () {
+                    return $http({
+                        method: "POST",
+                        url: `https://front-end-capstone-6732d.firebaseio.com/Course/.json`,
+                        data: courseResult
+                    })
+                }
+            },
+            "getCourseResults": {
                 value: function (key) {
                     return $http({
-                        method: "DELETE",
-                        url: `https://front-end-capstone-6732d.firebaseio.com/Students/${key}/.json`,
+                        method: "GET",
+                        url: `https://front-end-capstone-6732d.firebaseio.com/Course/.json`,
+                        data: courseResult
                     })
                 }
             }

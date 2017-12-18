@@ -1,6 +1,6 @@
 angular
 .module("TaxiProApp")
-.factory("questionFactory", function ($http) {
+.factory("testFactory", function ($http) {
     return Object.create(null, {
         "VideosCache": {
             value: null,

@@ -1,4 +1,4 @@
-angular.module("TaxiProApp", ["ngRoute"])
+angular.module("TaxiProApp", ["ngRoute", "ngEmbed"])
 
 const isAuth = AuthFactory => new Promise((resolve, reject) => {
     if (AuthFactory.isAuthenticated()) {
@@ -40,8 +40,8 @@ angular.module("TaxiProApp").config(function ($routeProvider) {
             controller: 'AuthCtrl'
         })
         .when('/startCourse', {
-            templateUrl: 'app/course/questions/partials/question.html',
-            controller: 'questionCtrl'
+            templateUrl: 'app/course/test/partials/test.html',
+            controller: 'testCtrl'
         })
         .otherwise('/signIn')
 })

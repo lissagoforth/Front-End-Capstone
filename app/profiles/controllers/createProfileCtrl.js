@@ -9,7 +9,9 @@ angular.module("TaxiProApp")
                 "phone": $scope.student.phone
             }
 
-            profileFactory.add(student)
+            profileFactory.add(student).then((response) => {
+                profileFactory.setCurrentStudent(response.data.name)
+            })
 
         }
 
@@ -18,6 +20,10 @@ angular.module("TaxiProApp")
         }
 
         $scope.startCourse = function () {
+            profileFactory.setCurrentStudent($routeParams.studentId)
+            testFactory.getQuestions()
+            testFactory.getAnswers()
+            testFactory.getVideos()
             $location.url("/startCourse")
         }
     })
