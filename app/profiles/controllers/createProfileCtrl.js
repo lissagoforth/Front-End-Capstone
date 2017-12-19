@@ -21,9 +21,12 @@ angular.module("TaxiProApp")
 
         $scope.startCourse = function () {
             profileFactory.setCurrentStudent($routeParams.studentId)
-            testFactory.getQuestions()
-            testFactory.getAnswers()
-            testFactory.getVideos()
-            $location.url("/startCourse")
+            testFactory.getQuestions().then(() => {
+                testFactory.getAnswers().then(() => {
+                    testFactory.getVideos().then(() => {
+                        $location.url("/startCourse")
+                    })
+                })
+            })
         }
     })

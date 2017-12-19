@@ -53,7 +53,6 @@ angular
                     url: `https://front-end-capstone-6732d.firebaseio.com/Videos/.json`
                 }).then(response => {
                     const data = response.data
-
                     this.VideosCache = Object.keys(data).map(key => {
                         data[key].videoID = key
                         return data[key]
