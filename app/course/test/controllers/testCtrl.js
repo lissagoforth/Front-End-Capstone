@@ -1,14 +1,11 @@
 angular
     .module("TaxiProApp")
     .controller("testCtrl",
-    function ($scope, testFactory) {
-        // let questions = null
-        // let answers = null
-        // let videos = null
+    function ($scope, testFactory, profileFactory) {
+        //visibility controls
         $scope.welcome = true
         $scope.vid = false
-        $scope.questionSet = false
-
+        $scope.quizSet = false
 
         $scope.showVid = function () {
             $scope.vid = true
@@ -20,37 +17,61 @@ angular
         }
 
         $scope.showQuestion = function () {
-            $scope.questionSet = true
+            $scope.quizSet = true
         }
-
-        
 
         $scope.monkeyButt = {
             value: null
         }
-        // get all questions and answers from testFactory
-       let vidCount = 0
+        // get all videos, questions and answers from testFactory
         videos = testFactory.VideosCache
-        $scope.videos = videos[vidCount]
-      
-        let count = 0
-        let questionGenerator = function () {
-            $scope.question = testFactory.QuestionsCache[count]
-            $scope.answers =  testFactory.AnswersCache.filter(answer => {
-                return answer.questionID === $scope.question.questionID
-            })
+        questions = testFactory.QuestionsCache
+        answers = testFactory.AnswersCache
+        currentStudentKey = profileFactory.getCurrentStudent()
+        currentStudent = profileFactory.single(currentStudentKey).then((student) => {
+            $scope.student = student
 
-        }
-        questionGenerator()
+        })
+
+
+        $scope.videos = videos[0]
+        $scope.questions = questions
+        $scope.answers = answers
+
+        
+
         $scope.nextQuestion = function () {
-            count++
-            questionGenerator()
-            if ($scope.question.videoID !== $scope.videos) {
-                vidCount ++
-            } else {
-                
-            }
+            $index ++
         }
+
+
+
+        $scope.filterAnswer = function (answer, question) {
+            console.log(question)
+            console.log(answer)
+          return answer.questionID === question.questionID
+        }
+
+
+
+        // let count = 0
+        // let questionGenerator = function () {
+        //     $scope.question = testFactory.QuestionsCache[count]
+        //     $scope.answers = testFactory.AnswersCache.filter(answer => {
+        //         return answer.questionID === $scope.question.questionID
+        //     })
+
+        // }
+        // questionGenerator()
+        //     $scope.nextQuestion = function () {
+        //         count++
+        //         questionGenerator()
+        //         if ($scope.question.videoID !== $scope.videos) {
+        //             vidCount++
+        //         } else {
+
+        //         }
+        //     }
     })
         // console.log($scope.monkeyButt.value)
         // testFactory.getQuestions().then((response) => {
@@ -74,5 +95,5 @@ angular
         //     $scope.videos = videos[0]
         //     return videos
         // })
-        
+
 

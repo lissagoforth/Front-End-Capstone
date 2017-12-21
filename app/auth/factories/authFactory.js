@@ -45,14 +45,14 @@ angular.module("TaxiProApp")
                 )
             },
             addUser: {
-                value: function (user, userName) { //add authorized user to firebase DB
+                value: function (userID, userName, userEmail) { //add authorized user to firebase DB
                     return $http({
                         method: "POST",
                         url: "https://front-end-capstone-6732d.firebaseio.com/authUsers/.json",
                         data: {
-                            "userEmail": user.email,
+                            "userEmail": userEmail,
                             "userName": userName,
-                            "firebaseId": user.uid
+                            "firebaseId": userID
                         }
                     })
                 }
@@ -71,7 +71,9 @@ angular.module("TaxiProApp")
                         .createUserWithEmailAndPassword(
                         user.email,
                         user.password
-                        )
+                        ).then((user) => {
+                            return user
+                        })
             }
         })
     })

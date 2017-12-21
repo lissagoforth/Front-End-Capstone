@@ -1,5 +1,5 @@
 <!-- header -->
-<h1> Welcome to the Taxi-Pro Course, {{ student.firstName }} {{ student.lastName }}</h1>
+<h1> Welcome to the Taxi-Pro Course,  {{ student.firstName }} {{ student.lastName }}</h1>
 
 <!-- Only show the first time, hide when they begin test-->
 <div ng-show="welcome">
@@ -11,7 +11,7 @@
 </div>
 <div ng-show="vid">
     <video ng-src="{{videos.videoURL}}" controls></video>
-    <button ng-click="showQuestion(); hideVid()">Begin quiz</button>
+    <button ng-click="showQuestion(); hideVid();">Begin quiz</button>
 </div>
 
 <!-- <ng-embed 
@@ -21,19 +21,22 @@
  ></ng-embed> -->
 
 <!-- show progress i.e. question 1 of 30 -->
-<!-- <h3> Question {{ count + 1 }} of 30 </h3> -->
+<!-- <h3> Question {{  }} of 30 </h3> -->
 
 <!-- display all answers options with matching questionID -->
-<div ng-show="questionSet">
+<div ng-show="quizSet">
     <!-- display for when answers are true/false -->
     <!-- Hide until student clicks "Begin Test" -->
     <!-- display question -->
-    <h3>{{ question.content }}</h3>
-    <ul>
-        <li ng-repeat="answer in answers">
-            <input type="radio" ng-model="monkeyButt.value" value="{{ answer.answerID }}">
-            <label>{{ answer.content }}</label>
-        </li>
-    </ul>
-    <button ng-click="nextQuestion()">Next</button>
+    <div ng-repeat="question in questions | limitTo : 1">
+
+        <h3>{{$index + 1}}. {{ question.content }}</h3>
+        <ul>
+            <li ng-repeat="answer in answers | filter: filterAnswer(answer, question)">
+                <input type="radio" ng-model="monkeyButt.value" value="{{ answer.answerID }}">
+                <label>{{ answer.content }}</label>
+            </li>
+        </ul>
+        <button ng-click="nextQuestion()">Next</button>
+    </div>
 </div>

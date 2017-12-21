@@ -88,11 +88,16 @@ angular
                     this.student = key
                 }
             },
+            "getCurrentStudent": {
+                value: function () {
+                    return this.student
+                }
+            },
             "addCourseResult": {
                 value: function () {
                     return $http({
                         method: "POST",
-                        url: `https://front-end-capstone-6732d.firebaseio.com/Course/.json`,
+                          url: `https://front-end-capstone-6732d.firebaseio.com/Course/.json`,
                         data: courseResult
                     })
                 }
