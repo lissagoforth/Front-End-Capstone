@@ -2,27 +2,6 @@ angular
     .module("TaxiProApp")
     .controller("testCtrl",
     function ($scope, testFactory, profileFactory) {
-        //visibility controls
-        $scope.welcome = true
-        $scope.vid = false
-        $scope.quizSet = false
-
-        $scope.showVid = function () {
-            $scope.vid = true
-            $scope.welcome = false
-        }
-
-        $scope.hideVid = function () {
-            $scope.vid = false
-        }
-
-        $scope.showQuestion = function () {
-            $scope.quizSet = true
-        }
-
-        $scope.monkeyButt = {
-            value: null
-        }
         // get all videos, questions and answers from testFactory
         videos = testFactory.VideosCache
         questions = testFactory.QuestionsCache
@@ -30,70 +9,83 @@ angular
         currentStudentKey = profileFactory.getCurrentStudent()
         currentStudent = profileFactory.single(currentStudentKey).then((student) => {
             $scope.student = student
-
         })
 
+        //visibility controls
+        $scope.welcome = true
+        $scope.vid = false
+        $scope.quizSet = false
+        $scope.thatsWrong = false
+        $scope.thatsRight = false
 
-        $scope.videos = videos[0]
-        $scope.questions = questions
-        $scope.answers = answers
+        $scope.showVid = function () {
+            $scope.vid = true
+            $scope.welcome = false
+            $scope.quizSet = false
+            $scope.videos = videos[vidCounter]
+        }
 
-        
+        $scope.hideVid = function () {
+            $scope.vid = false
+        }
 
+//set videocounter
+        let vidCounter = 0
+        $scope.videos = videos[vidCounter]
+
+        $scope.counter = 0
+        let quizQuestions = questions.filter((question) => {
+            return question.videoID === $scope.videos.videoID
+        })
+
+        $scope.showQuestion = function () {
+            $scope.quizSet = true
+            $scope.questions = quizQuestions[$scope.counter]
+            $scope.answers = answers.filter((answer) => {
+                return answer.questionID === $scope.questions.questionID
+            })
+        }
+
+//progress to the next question or video (if applicable)
         $scope.nextQuestion = function () {
-            $index ++
+            //grade the users answer
+            // gradeAnswer()
+            
+            //increment counter, advance to next question and corresponding answers    
+            $scope.counter++
+            if ($scope.counter < quizQuestions.length) {
+                $scope.questions = quizQuestions[$scope.counter]
+                $scope.answers = answers.filter((answer) => {
+                    return answer.questionID === $scope.questions.questionID
+                })
+            } else {
+                vidCounter++
+                $scope.showVid()
+                $scope.counter = 0
+                quizQuestions = questions.filter((question) => {
+                    return question.videoID === $scope.videos.videoID
+                })
+                $scope.questions = quizQuestions[$scope.counter]
+                $scope.answers = answers.filter((answer) => {
+                    return answer.questionID === $scope.questions.questionID
+                })
+            }
+        }
+// grade the selected answer
+        $scope.gradeAnswer = function () {
+            if(typeof ($scope.option) != "undefined") {
+                if($scope.option) {
+                    $scope.thatsRight = true
+                    $scope.thatsWrong = false
+                } else {
+                    $scope.thatsWrong = true
+                    $scope.thatsRight = false
+                    
+                }
+            }
         }
 
-
-
-        $scope.filterAnswer = function (answer, question) {
-            console.log(question)
-            console.log(answer)
-          return answer.questionID === question.questionID
-        }
-
-
-
-        // let count = 0
-        // let questionGenerator = function () {
-        //     $scope.question = testFactory.QuestionsCache[count]
-        //     $scope.answers = testFactory.AnswersCache.filter(answer => {
-        //         return answer.questionID === $scope.question.questionID
-        //     })
-
-        // }
-        // questionGenerator()
-        //     $scope.nextQuestion = function () {
-        //         count++
-        //         questionGenerator()
-        //         if ($scope.question.videoID !== $scope.videos) {
-        //             vidCount++
-        //         } else {
-
-        //         }
-        //     }
     })
-        // console.log($scope.monkeyButt.value)
-        // testFactory.getQuestions().then((response) => {
-        //     questions = response
-        //     // console.log("got the questions")
-        //     return questions
 
-        // }).then(questions => {
-        //     testFactory.getAnswers().then((response) => {
-        //         answers = response
-        //         // console.log("got the answers")
-        //         return answers
-        //     }).then(() => {
-        //         questionGenerator()
-
-        //     })
-
-        // })
-        // testFactory.getVideos().then((response) => {
-        //     videos = response
-        //     $scope.videos = videos[0]
-        //     return videos
-        // })
 
 

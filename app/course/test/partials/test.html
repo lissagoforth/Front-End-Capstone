@@ -11,7 +11,7 @@
 </div>
 <div ng-show="vid">
     <video ng-src="{{videos.videoURL}}" controls></video>
-    <button ng-click="showQuestion(); hideVid();">Begin quiz</button>
+    <button ng-click="hideVid(); showQuestion()">Begin quiz</button>
 </div>
 
 <!-- <ng-embed 
@@ -28,15 +28,21 @@
     <!-- display for when answers are true/false -->
     <!-- Hide until student clicks "Begin Test" -->
     <!-- display question -->
-    <div ng-repeat="question in questions | limitTo : 1">
+    <div>
 
-        <h3>{{$index + 1}}. {{ question.content }}</h3>
+        <h3>{{counter + 1}}. {{ questions.content }}</h3>
         <ul>
-            <li ng-repeat="answer in answers | filter: filterAnswer(answer, question)">
-                <input type="radio" ng-model="monkeyButt.value" value="{{ answer.answerID }}">
+            <li ng-repeat="answer in answers">
+                <input type="radio" ng-model="option" ng-value="{{ answer.isCorrect }}">
                 <label>{{ answer.content }}</label>
             </li>
         </ul>
-        <button ng-click="nextQuestion()">Next</button>
+        <button ng-click="gradeAnswer(); nextQuestion()">Next</button>
     </div>
+</div>
+<div ng-if="{{ answer.isCorrect }} === true">
+    <p>That's Right!</p>
+</div>
+<div ng-if="{{ answer.isCorrect }} === false">
+    <p>I'm sorry, that is incorrect. Try again!</p>
 </div>

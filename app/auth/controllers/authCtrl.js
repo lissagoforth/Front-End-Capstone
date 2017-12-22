@@ -28,8 +28,6 @@ angular.module("TaxiProApp")
             //verify password has required string to be authenticated
             if (userPassword.match("taxipro")) {
                 AuthFactory.registerWithEmail(registerNewUser).then(function (didRegister) {
-                
-                            console.log(didRegister)
                             $scope.logIn()
                             addUser(didRegister.uid, registerNewUser)
                 })
