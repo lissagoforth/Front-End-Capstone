@@ -11,6 +11,10 @@ angular
             $scope.student = student
         })
 
+        $scope.optionSelected = null;
+
+        
+
         //visibility controls
         $scope.welcome = true
         $scope.vid = false
@@ -29,7 +33,7 @@ angular
             $scope.vid = false
         }
 
-//set videocounter
+        //set videocounter
         let vidCounter = 0
         $scope.videos = videos[vidCounter]
 
@@ -45,47 +49,56 @@ angular
                 return answer.questionID === $scope.questions.questionID
             })
         }
+        $scope.showMe = function (optionSelected) {
+            console.log("isCorrect = ", optionSelected)
+            // alert("isCorrect = ", optionSelected)
+        }
 
-//progress to the next question or video (if applicable)
-        $scope.nextQuestion = function () {
-            //grade the users answer
-            // gradeAnswer()
-            
-            //increment counter, advance to next question and corresponding answers    
-            $scope.counter++
-            if ($scope.counter < quizQuestions.length) {
-                $scope.questions = quizQuestions[$scope.counter]
-                $scope.answers = answers.filter((answer) => {
-                    return answer.questionID === $scope.questions.questionID
-                })
-            } else {
-                vidCounter++
-                $scope.showVid()
-                $scope.counter = 0
-                quizQuestions = questions.filter((question) => {
-                    return question.videoID === $scope.videos.videoID
-                })
-                $scope.questions = quizQuestions[$scope.counter]
-                $scope.answers = answers.filter((answer) => {
-                    return answer.questionID === $scope.questions.questionID
-                })
+        //trying something i found on the interwebz
+        $scope.$watch('optionSelected', function(optionSelected) {
+            console.log(optionSelected);
+         });
+
+        // grade the selected answer
+        let gradeAnswer = function (optionSelected) {
+            debugger
+            if (optionSelected === true) {
+                console.log("isCorrect = true: ", optionSelected)
+                $scope.thatsRight = true
+                $scope.thatsWrong = false
+            } else if (optionSelected === false) {
+                console.log("isCorrect = false: ", optionSelected)
+                $scope.thatsWrong = true
+                $scope.thatsRight = false
             }
         }
-// grade the selected answer
-        $scope.gradeAnswer = function () {
-            if(typeof ($scope.option) != "undefined") {
-                if($scope.option) {
-                    $scope.thatsRight = true
-                    $scope.thatsWrong = false
+        //progress to the next question or video (if applicable)
+        $scope.nextQuestion = function (optionSelected) {
+            //alert when no answer is chosen and next button is clicked
+            // if (optionSelected === undefined) {
+            //     alert("Please select an answer before proceeding")
+            // } else {
+                //grade the users answer
+                gradeAnswer(optionSelected)
+                //increment counter, advance to next question and corresponding answers    
+                $scope.counter++
+                if ($scope.counter < quizQuestions.length) {
+                    $scope.questions = quizQuestions[$scope.counter]
+                    $scope.answers = answers.filter((answer) => {
+                        return answer.questionID === $scope.questions.questionID
+                    })
                 } else {
-                    $scope.thatsWrong = true
-                    $scope.thatsRight = false
-                    
+                    vidCounter++
+                    $scope.showVid()
+                    $scope.counter = 0
+                    quizQuestions = questions.filter((question) => {
+                        return question.videoID === $scope.videos.videoID
+                    })
+                    $scope.questions = quizQuestions[$scope.counter]
+                    $scope.answers = answers.filter((answer) => {
+                        return answer.questionID === $scope.questions.questionID
+                    })
                 }
-            }
+            // }
         }
-
     })
-
-
-
