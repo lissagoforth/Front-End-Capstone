@@ -11,37 +11,36 @@ angular
             $scope.student = student
         })
 
-        $scope.optionSelected = null;
-
+        $scope.optionSelected = null
         
-
+        
         //visibility controls
         $scope.welcome = true
         $scope.vid = false
         $scope.quizSet = false
         $scope.thatsWrong = false
         $scope.thatsRight = false
-
+        
         $scope.showVid = function () {
             $scope.vid = true
             $scope.welcome = false
             $scope.quizSet = false
             $scope.videos = videos[vidCounter]
         }
-
+        
         $scope.hideVid = function () {
             $scope.vid = false
         }
-
+        
         //set videocounter
         let vidCounter = 0
         $scope.videos = videos[vidCounter]
-
+        
         $scope.counter = 0
         let quizQuestions = questions.filter((question) => {
             return question.videoID === $scope.videos.videoID
         })
-
+        
         $scope.showQuestion = function () {
             $scope.quizSet = true
             $scope.questions = quizQuestions[$scope.counter]
@@ -50,36 +49,38 @@ angular
             })
         }
         $scope.showMe = function (optionSelected) {
-            console.log("isCorrect = ", optionSelected)
+            currentAnswer = optionSelected;
+            console.log(currentAnswer)
             // alert("isCorrect = ", optionSelected)
         }
 
         //trying something i found on the interwebz
-        $scope.$watch('optionSelected', function(optionSelected) {
-            console.log(optionSelected);
-         });
+        // $scope.$watch('optionSelected', function(optionSelected) {
+        //  })
 
         // grade the selected answer
-        let gradeAnswer = function (optionSelected) {
-            debugger
-            if (optionSelected === true) {
-                console.log("isCorrect = true: ", optionSelected)
+        let gradeAnswer = function (currentAnswer) {
+            // debugger
+            if (currentAnswer === true) {
+                console.log("isCorrect = true: ", currentAnswer)
                 $scope.thatsRight = true
                 $scope.thatsWrong = false
-            } else if (optionSelected === false) {
-                console.log("isCorrect = false: ", optionSelected)
+            } else if (currentAnswer === false) {
+                console.log("isCorrect = false: ", currentAnswer)
                 $scope.thatsWrong = true
                 $scope.thatsRight = false
             }
         }
         //progress to the next question or video (if applicable)
-        $scope.nextQuestion = function (optionSelected) {
-            //alert when no answer is chosen and next button is clicked
-            // if (optionSelected === undefined) {
+        $scope.nextQuestion = function () {
+            // alert when no answer is chosen and next button is clicked
+            // if (currentAnswer === null) {
             //     alert("Please select an answer before proceeding")
             // } else {
                 //grade the users answer
-                gradeAnswer(optionSelected)
+                gradeAnswer(currentAnswer)
+                // $scope.thatsRight = false
+                // $scope.thatsWrong = false
                 //increment counter, advance to next question and corresponding answers    
                 $scope.counter++
                 if ($scope.counter < quizQuestions.length) {
