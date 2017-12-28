@@ -23,7 +23,7 @@
         <ul>
             <!-- display all answers options with matching questionID -->
             <li ng-repeat="answer in answers">
-                <input type="radio" ng-model="optionSelected" ng-value="answer.isCorrect" name="choice" id="answer.answerID" ng-change="showMe(optionSelected)">
+                <input type="radio" ng-model="optionSelected" ng-value="answer.isCorrect" name="choice" id="answer.answerID" ng-change="gradeAnswer(optionSelected)">
                 <label for="answer.answerID">{{ answer.content }}</label>
             </li>
         </ul>
