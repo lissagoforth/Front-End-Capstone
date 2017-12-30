@@ -1,0 +1,23 @@
+<div ng-controller="createProfileCtrl">
+    <h2>Create New Student Profile</h2>
+    <form>
+
+        <div>
+            First name: <input type="text" ng-model="student.firstName" autofocus>
+        </div>
+        <div>
+            Last name: <input type="text" ng-model="student.lastName">
+        </div>
+        <div>
+            Address: <input type="text" ng-model="student.address">
+        </div>
+        <div>
+            Phone: <input type="tel" ng-model="student.phone">
+        </div>
+
+        <button ng-click="addStudentProfile(); displayAdminOpt()" type="button">Create Profile</button>
+
+        <button ng-click="addStudentProfile(); startCourse()">Save Profile and Begin Course</button>
+    </form>
+
+</div>

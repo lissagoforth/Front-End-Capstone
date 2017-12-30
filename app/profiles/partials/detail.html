@@ -1,0 +1,15 @@
+<h2>{{ student.firstName }} {{ student.lastName }}</h2>
+<h3>Address: </h3>
+<p>{{ student.address }}</p>
+<h3>Phone: </h3>
+<p>{{ student.phone }}</p>
+<!-- grab and display notes in database that match the studentId and who wrote the note (userName) -->
+<h3>Notes:</h3>
+<div ng-repeat="note in notes">
+        <p>{{ note.author }} wrote: {{ note.note }}</p>
+
+</div>
+Add Note: <textarea rows="4" cols="40" type="text" ng-model="student.notes" placeholder="Add any additional notes about the student here."></textarea><br>
+        <button ng-click="addStudentNote()">Save Note</button>
+</div>
+<button ng-click="startCourse()">Begin Course</button>

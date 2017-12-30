@@ -1,0 +1,62 @@
+<!-- header -->
+<h1> Welcome to the Taxi-Pro Course, {{ student.firstName }} {{ student.lastName }}</h1>
+
+<!-- Only show the first time, hide when they begin test-->
+<div ng-show="welcome">
+    <p>The Taxi-Pro course is comprised of two tests. You will begin by watching a number of videos. After each video you will
+        be presented with a short quiz. This quiz is only for your benefit and will NOT go towards your final test grade.
+        After the last quiz the test will begin.</p>
+    <button ng-click="showVid()">Begin</button>
+    <!-- on click hide above paragraph, show first video -->
+</div>
+<div ng-show="vid">
+    <video ng-src="{{videos.videoURL}}" controls></video>
+    <button ng-click="hideVid(); showQuestion()">Begin quiz</button>
+</div>
+
+<!-- show progress i.e. question 1 of 30 -->
+<!-- <h3> Question {{ counter + 1 }} of 30 </h3> -->
+
+<!-- Hide until student clicks "Begin Test" -->
+<div ng-show="quizSet">
+    <!-- display question -->
+    <h3>{{counter + 1}}. {{ questions.content }}</h3>
+    <ul>
+        <!-- display all answers options with matching questionID -->
+        <li ng-repeat="answer in answers">
+            <input type="radio" ng-model="optionSelected" ng-value="answer.isCorrect" name="choice" id="answer.answerID" ng-change="gradeAnswer(optionSelected)">
+            <label for="answer.answerID">{{ answer.content }}</label>
+        </li>
+    </ul>
+    <button ng-click="nextQuestion()">Next</button>
+</div>
+<div ng-show="thatsRight">
+    <p>That's Right!</p>
+</div>
+<div ng-show="thatsWrong">
+    <p>I'm sorry, that is incorrect. Try again!</p>
+</div>
+
+<div ng-show="beginTest">
+    <p>You are about begin the test portion of the Taxi-Pro Course. There are a total of 30 questions. Each question must be answered before proceeding. Once you have answered and advanced to the next question you CANNOT go back and change your answers. Good luck!</p>
+    <button ng-click="showTest()">Click to begin test</button>
+</div>
+
+<div ng-show="testSet">
+    <!-- display question -->
+    <h3>{{counter + 1}}. {{ questions.content }}</h3>
+    <ul>
+        <!-- display all answers options with matching questionID -->
+        <li ng-repeat="answer in answers">
+            <input type="radio" ng-model="optionSelected" ng-value="answer.isCorrect" name="choice" id="answer.answerID">
+            <label for="answer.answerID">{{ answer.content }}</label>
+        </li>
+    </ul>
+    <button ng-click="runTestOne()">Next</button>
+</div>
+<div ng-show="allDone">
+    <p>You have completed the Taxi-Pro Course. Please alert a staff member that you are finished</p>
+    <p><i>Below is for office use only</i></p>
+    <button ng-click="">Save and Quit</button>
+    <button ng-click="">View Results</button>
+</div>
