@@ -10,6 +10,11 @@ angular
         currentStudent = profileFactory.single(currentStudentKey).then((student) => {
             $scope.student = student
         })
+        makeQuestionSet = function(questionID) {
+
+        }
+
+        quizSet = function(vidCounter) {}
 
         $scope.optionSelected = null
 
@@ -28,6 +33,7 @@ angular
             $scope.vid = true
             $scope.welcome = false
             $scope.quizSet = false
+            $scope.testSet = false
             $scope.videos = videos[vidCounter]
         }
         
@@ -50,12 +56,10 @@ angular
         })
         
         let firstTestQuestions = questions.filter((question) => {
-            // debugger
             return  (question.videoID === "Video1") ||  (question.videoID === "Video2") || (question.videoID === "Video3") || (question.videoID === "Video4") ||  (question.videoID === "Video5")
         })
 
         let secondTestQuestions = questions.filter((question) => {
-            // debugger
             return  (question.videoID === "Video6") ||  (question.videoID === "Video7") || (question.videoID === "Video8") || (question.videoID === "Video9")
         })
     
@@ -148,7 +152,7 @@ $scope.runTestOne = function () {
                     $scope.answers = answers.filter((answer) => {
                         return answer.questionID === $scope.questions.questionID
                     })
-                    if (vidCounter === 4 || vidCounter === 8) {
+                    if (vidCounter == 4 || vidCounter == 8) {
                         $scope.showVid()
                         $scope.counter = 0
                         //grab new questions with mathching videoIDs
