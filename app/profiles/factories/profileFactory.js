@@ -94,7 +94,7 @@ angular
                 }
             },
             "addCourseResult": {
-                value: function () {
+                value: function (course) {
                     return $http({
                         method: "POST",
                           url: `https://front-end-capstone-6732d.firebaseio.com/Course/.json`,
