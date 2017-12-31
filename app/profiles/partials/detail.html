@@ -10,6 +10,10 @@
 
 </div>
 Add Note: <textarea rows="4" cols="40" type="text" ng-model="student.notes" placeholder="Add any additional notes about the student here."></textarea><br>
-        <button ng-click="addStudentNote()">Save Note</button>
+        <button ng-click="addStudentNote()">Save Note</button> <br>
+<h3>Course Results:</h3>
+<div ng-repeat="course in courses">
+        {{ course }}
 </div>
+
 <button ng-click="startCourse()">Begin Course</button>
