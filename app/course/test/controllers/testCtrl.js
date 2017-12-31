@@ -10,11 +10,7 @@ angular
         currentStudent = profileFactory.single(currentStudentKey).then((student) => {
             $scope.student = student
         })
-        makeQuestionSet = function(questionID) {
 
-        }
-
-        quizSet = function(vidCounter) {}
 
         $scope.optionSelected = null
 
@@ -25,6 +21,8 @@ angular
         $scope.quizSet = false
         $scope.thatsWrong = false
         $scope.thatsRight = false
+        $scope.advance = false
+        $scope.nextVideo = false
         $scope.beginTest = false
         $scope.testSet = false
         $scope.allDone = false
@@ -34,6 +32,7 @@ angular
             $scope.welcome = false
             $scope.quizSet = false
             $scope.testSet = false
+            $scope.nextVideo = false
             $scope.videos = videos[vidCounter]
         }
         
@@ -58,33 +57,60 @@ angular
         let firstTestQuestions = questions.filter((question) => {
             return  (question.videoID === "Video1") ||  (question.videoID === "Video2") || (question.videoID === "Video3") || (question.videoID === "Video4") ||  (question.videoID === "Video5")
         })
-
+        
         let secondTestQuestions = questions.filter((question) => {
             return  (question.videoID === "Video6") ||  (question.videoID === "Video7") || (question.videoID === "Video8") || (question.videoID === "Video9")
         })
-    
-        $scope.showQuestion = function () {
+        
+        $scope.showQuestion = function (videoID) {
+            $scope.videos = videos[vidCounter]
+            quizQuestions = questions.filter((question) => {
+                return question.videoID === $scope.videos.videoID
+            })
+            console.log(quizQuestions)
             $scope.quizSet = true
+            $scope.counter = 0 
             $scope.questions = quizQuestions[$scope.counter]
             $scope.answers = answers.filter((answer) => {
                 return answer.questionID === $scope.questions.questionID
             })
+            debugger
         }
 
         // grade the selected answer
         $scope.gradeAnswer = function (optionSelected) {
             currentAnswer = optionSelected;
-            console.log(currentAnswer)
+            // console.log(currentAnswer)
             if (currentAnswer === true) {
-                console.log("isCorrect = true: ", currentAnswer)
+                // console.log("isCorrect = true: ", currentAnswer)
                 $scope.thatsRight = true
                 $scope.thatsWrong = false
+                $scope.advance = true
             } else if (currentAnswer === false) {
-                console.log("isCorrect = false: ", currentAnswer)
+                // console.log("isCorrect = false: ", currentAnswer)
                 $scope.thatsWrong = true
                 $scope.thatsRight = false
             }
         }
+        $scope.nextQuizQuestion = function() {
+            $scope.thatsRight = false
+            $scope.thatsWrong = false
+            $scope.counter++
+            if ($scope.counter < quizQuestions.length) {
+                $scope.questions = quizQuestions[$scope.counter]
+                $scope.answers = answers.filter((answer) => {
+                    return answer.questionID === $scope.questions.questionID
+                })
+            } else {
+                vidCounter++
+                $scope.quizSet = false  
+                $scope.nextVideo = true
+            }
+            if (vidCounter == 4 || vidCounter == 8) {
+                
+            }
+        }
+
 
         //after videoIDs 1-5 give test 1
 //test 1: grab all questions with matching videoIDs 1-5 and corresponding answers

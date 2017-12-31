@@ -19,7 +19,7 @@
 
 <!-- Hide until student clicks "Begin Test" -->
 <div ng-show="quizSet">
-    <!-- display question -->
+    <!-- display quiz question -->
     <h3>{{counter + 1}}. {{ questions.content }}</h3>
     <ul>
         <!-- display all answers options with matching questionID -->
@@ -28,7 +28,8 @@
             <label for="answer.answerID">{{ answer.content }}</label>
         </li>
     </ul>
-    <button ng-click="nextQuestion()">Next</button>
+    <button ng-show="advance" ng-click="nextQuizQuestion()">Next</button>
+    <!-- <button ng-click="nextQuestion()">Next</button> -->
 </div>
 <div ng-show="thatsRight">
     <p>That's Right!</p>
@@ -36,6 +37,7 @@
 <div ng-show="thatsWrong">
     <p>I'm sorry, that is incorrect. Try again!</p>
 </div>
+<button ng-show="nextVideo" ng-click="showVid()">Proceed to Next Video</button>
 
 <div ng-show="beginTest">
     <p>You are about begin the test portion of the Taxi-Pro Course. There are a total of 30 questions. Each question must be answered before proceeding. Once you have answered and advanced to the next question you CANNOT go back and change your answers. Good luck!</p>
@@ -43,7 +45,7 @@
 </div>
 
 <div ng-show="testSet">
-    <!-- display question -->
+    <!-- display test question -->
     <h3>{{counter + 1}}. {{ questions.content }}</h3>
     <ul>
         <!-- display all answers options with matching questionID -->
