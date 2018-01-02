@@ -49,7 +49,7 @@ angular
                 }
             },
             "getNotes": {
-                value: function (studentId  ) {
+                value: function (studentId) {
                     return $http({
                         method: "GET", 
                         url: `https://front-end-capstone-6732d.firebaseio.com/Notes/.json?orderBy="studentId"&equalTo="${studentId}"`
@@ -98,16 +98,15 @@ angular
                     return $http({
                         method: "POST",
                           url: `https://front-end-capstone-6732d.firebaseio.com/Course/.json`,
-                        data: courseResult
+                        data: course
                     })
                 }
             },
             "getCourseResults": {
-                value: function (key) {
+                value: function (studentID) {
                     return $http({
                         method: "GET",
-                        url: `https://front-end-capstone-6732d.firebaseio.com/Course/.json`,
-                        data: courseResult
+                        url: `https://front-end-capstone-6732d.firebaseio.com/Course/.json?orderBy="studentID"&equalTo="${studentID}"`,
                     })
                 }
             }

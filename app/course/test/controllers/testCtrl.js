@@ -1,7 +1,7 @@
 angular
     .module("TaxiProApp")
     .controller("testCtrl",
-    function ($scope, $location, testFactory, profileFactory) {
+    function ($scope, $location, testFactory, profileFactory, AuthFactory) {
         // get all videos, questions and answers from testFactory
         videos = testFactory.VideosCache
         questions = testFactory.QuestionsCache
@@ -12,11 +12,8 @@ angular
             $scope.student = student
         })
         // user = authFactory.getUser
-        console.log(currentStudentKey)
-
 
         $scope.optionSelected = null
-
 
         //visibility controls
         $scope.welcome = true
@@ -73,11 +70,11 @@ angular
             $scope.testSet = true
             $scope.testOneNext = true
         }
-        
+
         $scope.showTestTwo = function () {
             $scope.counter = 0
             $scope.questions = secondTestQuestions[$scope.counter]
-            console.log($scope.questions)
+            // console.log($scope.questions)
             $scope.answers = answers.filter((answer) => {
                 return answer.questionID === $scope.questions.questionID
             })
@@ -97,7 +94,7 @@ angular
         let numberCorrect = 0
 
         $scope.storeStudentAnswer = function (questionID, answers, studentAnswer) {
-            console.log($scope.optionSelected)
+            // console.log($scope.optionSelected)
             questionIDs.push($scope.questions.questionID)
             testAnswers.push($scope.answers)
             studentAnswers.push($scope.optionSelected)
@@ -105,8 +102,6 @@ angular
                 numberCorrect++
             }
         }
-
-
 
         //set videocounter
         $scope.vidCounter = 0
@@ -132,7 +127,7 @@ angular
             quizQuestions = questions.filter((question) => {
                 return question.videoID === $scope.videos.videoID
             })
-            console.log(quizQuestions)
+            // console.log(quizQuestions)
             $scope.quizSet = true
             $scope.counter = 0
             $scope.questions = quizQuestions[$scope.counter]
@@ -188,7 +183,6 @@ angular
             }
         }
 
-
         //after videoIDs 1-5 give test 1
         //test 1: grab all questions with matching videoIDs 1-5 and corresponding answers
         $scope.nextTestQuestion = function () {
@@ -205,7 +199,7 @@ angular
                 $scope.vidCounter++
                 $scope.testSet = false
                 $scope.finishedTestOne = true
-                console.log(questionIDs, testAnswers, studentAnswers)
+                // console.log(questionIDs, testAnswers, studentAnswers)
                 console.log("test1 number correct: ", numberCorrect, " out of 30")
             }
         }
@@ -225,35 +219,36 @@ angular
                 //if it's the last question of test, display completion message
                 $scope.allDone = true
                 $scope.testSet = false
-                console.log(questionIDs, testAnswers, studentAnswers)
-                console.log("test2 number correct: ", numberCorrect, " out of 30")
+                // console.log(questionIDs, testAnswers, studentAnswers)
+                console.log("test2 number correct: ", numberCorrect, " out of 60")
             }
         }
 
         //push all info into Course object 
-        $scope.createCourse = function () {
-            const course = {
-                "studentID": currentStudent,
-                // "adminID": authFactory.getUser,
-                "date": Date.now(),
-                "questionIDs": [questionIDs],
-                "answerIDs": [answerIDs],
-                // "correctAnswerID": [], 
-                "studentAnswerIDs": [studentAnswers],
-            }
-            console.log(course)
-            profileFactory.addCourseResult(course).then(() => {
-                profileFactory.getCourseResults(course.courseID).then(response => {
-                    $scope.courseResults = []
-                    for (let key in response.data) {
-                        let course = {
-                            "course": response.data[key]
-                        }
-                        $scope.courseResults.push(course)
-                    }
-                })
+        $scope.saveCourse = function () {
 
-            })
+            const user = AuthFactory.getUser()
+            AuthFactory.getUserName(user.uid)
+                .then(response => {
+                    let userName = ""
+                    for (let key in response.data) {
+                        userName = response.data[key].userName
+                    }
+                    const course = {
+                        "studentID": currentStudentKey,
+                        "admin": userName,
+                        "date": Date.now(),
+                        "questionIDs": [questionIDs],
+                        "answerIDs": [testAnswers],
+                        // "correctAnswerID": [], 
+                        "studentAnswerIDs": [studentAnswers],
+                        "numberCorrect": numberCorrect
+                    }
+                    // console.log(course) 
+                    profileFactory.addCourseResult(course)
+                })
+        }
+        $scope.adminOptions = function () {
             $location.url("/")
         }
 
@@ -261,9 +256,6 @@ angular
             $location.url("/profiles/detail/" + $scope.currentStudentKey)
         }
     })
-
-
-
 
         // //progress to the next question or video (if applicable)
         // $scope.nextQuestion = function () {
