@@ -59,17 +59,18 @@ angular
             }
         }
 
-        
+
         $scope.courseResults = []
         profileFactory.getCourseResults($routeParams.studentId).then(response => {
-                for (let key in response.data) {
-                    let courseResult = {
-                         "numberCorrect": response.data[key].numberCorrect,
-                         "dateTaken": response.data[key].date
-                    }
-                    $scope.courseResults.push(courseResult)
+            for (let key in response.data) {
+                let courseResult = {
+                    "numberCorrect": response.data[key].numberCorrect,
+                    "dateTaken": response.data[key].date,
+                    "admin": response.data[key].admin
                 }
-            })
+                $scope.courseResults.push(courseResult)
+            }
+        })
 
 
         $scope.startCourse = function () {

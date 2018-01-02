@@ -106,7 +106,7 @@ angular
                 value: function (studentID) {
                     return $http({
                         method: "GET",
-                        url: `https://front-end-capstone-6732d.firebaseio.com/Course/.json?orderBy="studentID"&equalTo="${studentID}"`
+                        url: `https://front-end-capstone-6732d.firebaseio.com/Course/.json?orderBy="studentID"&equalTo="${studentID}"`,
                     })
                 }
             }

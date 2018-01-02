@@ -13,8 +13,10 @@ Add Note: <textarea rows="4" cols="40" type="text" ng-model="student.notes" plac
         <button ng-click="addStudentNote()">Save Note</button> <br>
 <h3>Course Results:</h3>
 <div ng-repeat="courseResult in courseResults">
-        <p>Test Completed: {{ courseResult.dateTaken }}</p>
+        <h4>Course Attempt {{$index + 1}}</h4>
+        <p>Test Completed: {{ courseResult.dateTaken | date: "fullDate" }}</p>
         <p>Number Correct: {{ courseResult.numberCorrect }} out of 60.</p>
+        <p>Course proctored by: {{ courseResult.admin }}</p>
 </div>
 
 <button ng-click="startCourse()">Begin Course</button>

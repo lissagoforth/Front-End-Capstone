@@ -1,6 +1,6 @@
 <!-- header -->
 <h1> Welcome to the Taxi-Pro Course, {{ student.firstName }} {{ student.lastName }}</h1>
-<button ng-click="saveCourse()">debug</button>
+<!-- <button ng-click="saveCourse()">debug</button> -->
 
 <!-- Only show the first time, hide when they begin test-->
 <div ng-show="welcome">
@@ -67,8 +67,8 @@
     
 </div>
 <div ng-show="allDone">
-    <p>You have completed the Taxi-Pro Course. Please alert a staff member that you are finished</p>
+    <p>You have completed the Taxi-Pro Course. Please alert a staff member that you are finished.</p>
     <p><i>Below is for office use only</i></p>
-    <button ng-click="saveCourse()">Save and Quit</button>
-    <button ng-click="viewStudentProfile()">View Results</button>
+    <button ng-click="saveCourse(); adminOptions()">Save and Quit</button>
+    <button ng-click="saveCourse(); viewStudentProfile()">View Results</button>
 </div>

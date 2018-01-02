@@ -1,5 +1,5 @@
 angular.module("TaxiProApp")
-    .controller("createProfileCtrl", function ($scope, $location, profileFactory) {
+    .controller("createProfileCtrl", function ($scope, $location, $routeParams, profileFactory, testFactory) {
 
         $scope.addStudentProfile = function () {
             const student = {

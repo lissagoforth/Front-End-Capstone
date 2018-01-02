@@ -12,7 +12,7 @@ angular
             $scope.student = student
         })
         // user = authFactory.getUser
-      
+
         $scope.optionSelected = null
 
         //visibility controls
@@ -70,7 +70,7 @@ angular
             $scope.testSet = true
             $scope.testOneNext = true
         }
-        
+
         $scope.showTestTwo = function () {
             $scope.counter = 0
             $scope.questions = secondTestQuestions[$scope.counter]
@@ -226,20 +226,29 @@ angular
 
         //push all info into Course object 
         $scope.saveCourse = function () {
-            
+
             const user = AuthFactory.getUser()
-            const course = {
-                "studentID": currentStudentKey,
-                "adminID": user.uid,
-                "date": Date.toString(),
-                "questionIDs": [questionIDs],
-                "answerIDs": [testAnswers],
-                // "correctAnswerID": [], 
-                "studentAnswerIDs": [studentAnswers],
-                "numberCorrect": numberCorrect
-            }
-            // console.log(course) 
-            profileFactory.addCourseResult(course)
+            AuthFactory.getUserName(user.uid)
+                .then(response => {
+                    let userName = ""
+                    for (let key in response.data) {
+                        userName = response.data[key].userName
+                    }
+                    const course = {
+                        "studentID": currentStudentKey,
+                        "admin": userName,
+                        "date": Date.now(),
+                        "questionIDs": [questionIDs],
+                        "answerIDs": [testAnswers],
+                        // "correctAnswerID": [], 
+                        "studentAnswerIDs": [studentAnswers],
+                        "numberCorrect": numberCorrect
+                    }
+                    // console.log(course) 
+                    profileFactory.addCourseResult(course)
+                })
+        }
+        $scope.adminOptions = function () {
             $location.url("/")
         }
 
