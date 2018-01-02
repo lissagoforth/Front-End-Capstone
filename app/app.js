@@ -1,4 +1,4 @@
-angular.module("TaxiProApp", ["ngRoute", "ngEmbed"])
+angular.module("TaxiProApp", ["ngRoute", "ngEmbed", "ngMaterial"])
 
 const isAuth = AuthFactory => new Promise((resolve, reject) => {
     if (AuthFactory.isAuthenticated()) {
