@@ -59,6 +59,7 @@ angular.module("TaxiProApp")
             },
             getUserName: {
                 value: function (userId) {
+                    console.log(userId)
                     return $http({
                         method: "GET",
                         url: `https://front-end-capstone-6732d.firebaseio.com/authUsers/.json?orderBy="firebaseId"&equalTo"${userId}"`

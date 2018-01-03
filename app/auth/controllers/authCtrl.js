@@ -24,6 +24,7 @@ angular.module("TaxiProApp")
             AuthFactory.authenticate($scope.auth).then(function (didLogin) {
                 $scope.login = {}
             })
+            
             $location.url("/")
         }
 

@@ -226,13 +226,17 @@ angular
 
         //push all info into Course object 
         $scope.saveCourse = function () {
-
+            debugger
             const user = AuthFactory.getUser()
             AuthFactory.getUserName(user.uid)
                 .then(response => {
+                    // console.log(response.data)
                     let userName = ""
                     for (let key in response.data) {
-                        userName = response.data[key].userName
+                        let fbID = response.data[key].firebaseId
+                        if (fbID === user.uid) {
+                            userName = response.data[key].userName
+                        }
                     }
                     const course = {
                         "studentID": currentStudentKey,
