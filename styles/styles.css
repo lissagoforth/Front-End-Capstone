@@ -1,11 +1,5 @@
-nav > ul {
-    padding: 0 10px 0 0;
-}
-
-nav > ul > li {
-    padding: 0 10px 0 0;
-    display: inline;
-    list-style-type: none;
+a{
+    
 }
 
 .align-left {
@@ -20,6 +14,7 @@ nav > ul > li {
     align-content: center;
     margin: 25px;
     padding: 10px 25px;
+    background-color: #ffeb3b
 }
 li {
     list-style-type: none;

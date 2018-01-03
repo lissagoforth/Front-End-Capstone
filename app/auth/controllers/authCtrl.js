@@ -1,5 +1,6 @@
 angular.module("TaxiProApp")
     .controller("AuthCtrl", function ($scope, $location, AuthFactory) {
+        $scope.landing = true
         $scope.auth = {}
 
         $scope.logoutUser = function () {
@@ -8,19 +9,22 @@ angular.module("TaxiProApp")
             $location.url("/signIn")
         }
         $scope.loginPress = function(){
+            $scope.landing = false
             $scope.existing = true
             $scope.new = false
         }
         $scope.newUserPress = function(){
+            $scope.landing = false
             $scope.existing = false
             $scope.new = true
         }
-
+        
         $scope.logIn = function () {
             // authenticate user, log them in, direct them to the adminOptions page (create new or view profiles)
             AuthFactory.authenticate($scope.auth).then(function (didLogin) {
                 $scope.login = {}
             })
+            $location.url("/")
         }
 
         $scope.newUser = function (registerNewUser) {
