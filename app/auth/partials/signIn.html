@@ -1,16 +1,16 @@
 <div ng-show=landing>
-    <button ng-click="loginPress()">Login</button>
-    <button ng-click="newUserPress()">New User</button>
+    <button class="button" ng-click="loginPress()">Login</button>
+    <button class="button" ng-click="newUserPress()">New User</button>
 </div>
 
 <div ng-show="existing"> <!-- display if login button is clicked -->
     <input type="email" placeholder="Email address" ng-model="auth.email" autofocus>
     <input type="password" placeholder="Password" ng-model="auth.password"><br>
-    <button ng-click="logIn(auth)">Login</button>
+    <button class="button" ng-click="logIn(auth)">Login</button>
 </div>
 <div ng-show="new"> <!-- display if new user button is clicked -->
     <input type="text" placeholder="User Name" ng-model="auth.userName" autofocus>
     <input type="email" placeholder="Email address" ng-model="auth.email" >
     <input type="password" placeholder="Password" ng-model="auth.password"><br>
-    <button ng-click="newUser(auth)">Login</button>
+    <button class="button" ng-click="newUser(auth)">Login</button>
 </div>

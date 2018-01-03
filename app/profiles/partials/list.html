@@ -1,6 +1,6 @@
 <h3>Student Profiles</h3>
 
-
+<h4>Search By:</h4>
     <input type="text" ng-model="queryFirst" placeholder="First Name"/>
 
     <input type="text" ng-model="queryLast" placeholder="Last Name"/>
@@ -11,7 +11,7 @@
 
 
 <div ng-repeat="student in profiles |filter:{firstName: queryFirst, lastName: queryLast, phone: queryPhone, address: queryAddress} | orderBy: 'lastName'">
-    <div>
+    <div class="card">
         <a href="#!/profiles/detail/{{ student.id }}">{{ student.firstName }} {{ student.lastName }}</a><br> 
         <p>{{ student.address }}</p>
         <p>{{ student.phone }}</p>

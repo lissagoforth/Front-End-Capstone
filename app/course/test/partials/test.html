@@ -7,12 +7,12 @@
     <p>The Taxi-Pro course is comprised of two tests. You will begin by watching a number of videos. After each video you will
         be presented with a short quiz. This quiz is only for your benefit and will NOT go towards your final test grade.
         After the last quiz the test will begin.</p>
-    <button ng-click="showVid()">Begin</button>
+    <button class="button" ng-click="showVid()">Begin</button>
     <!-- on click hide above paragraph, show first video -->
 </div>
 <div ng-show="vid">
     <video ng-src="{{videos.videoURL}}" controls></video>
-    <button ng-click="hideVid(); showQuestion()">Begin quiz</button>
+    <button class="button block" ng-click="hideVid(); showQuestion()">Begin quiz</button>
 </div>
 
 <!-- show progress i.e. question 1 of 30 -->
@@ -24,51 +24,51 @@
     <h3>{{counter + 1}}. {{ questions.content }}</h3>
     <ul>
         <!-- display all answers options with matching questionID -->
-        <li ng-repeat="answer in answers">
+        <li class= "answer" ng-repeat="answer in answers">
             <input type="radio" ng-model="optionSelected" ng-value="answer.isCorrect" name="choice" id="answer.answerID" ng-change="gradeAnswer(optionSelected)">
             <label for="answer.answerID">{{ answer.content }}</label>
         </li>
     </ul>
-    <button ng-show="advance" ng-click="nextQuizQuestion()">Next</button>
-    <button ng-show="directToTest" ng-click="initTest()">Next</button>
+    <button class="button" ng-show="advance" ng-click="nextQuizQuestion()">Next</button>
+    <button class="button" ng-show="directToTest" ng-click="initTest()">Next</button>
     <!-- <button ng-show= "startTest" ng-click="showTest()">Start Test</button> -->
     <!-- <button ng-click="nextQuestion()">Next</button> -->
 </div>
-<div ng-show="thatsRight">
+<div class="card" ng-show="thatsRight">
     <p>That's Right!</p>
 </div>
-<div ng-show="thatsWrong">
+<div class="card" ng-show="thatsWrong">
     <p>I'm sorry, that is incorrect. Try again!</p>
 </div>
-<button ng-show="nextVideo" ng-click="showVid()">Proceed to Next Video</button>
+<button class="button" ng-show="nextVideo" ng-click="showVid()">Proceed to Next Video</button>
 
 <div ng-show="beginTest">
     <p>You are about begin the test portion of the Taxi-Pro Course. There are a total of 30 questions. Each question must be answered before proceeding. Once you have answered and advanced to the next question you CANNOT go back and change your answers. Good luck!</p>
-    <button ng-show="testOne" ng-click="showTest()">Click to begin test</button>
-    <button ng-show="testTwo" ng-click="showTestTwo()">Click to begin test</button>
+    <button class="button" ng-show="testOne" ng-click="showTest()">Click to begin test</button>
+    <button class="button" ng-show="testTwo" ng-click="showTestTwo()">Click to begin test</button>
 </div>
 
 <div ng-show="testSet">
     <!-- display test question -->
     <h3>{{counter + 1}}. {{ questions.content }}</h3>
-    <ul>
+    <ul class="card">
         <!-- display all answers options with matching questionID -->
-        <li ng-repeat="answer in answers">
+        <li class="answer" ng-repeat="answer in answers">
             <input type="radio" ng-model="optionSelected" ng-value="answer.isCorrect" ng-change="grabOption(optionSelected)" name="choice" id="answer.answerID">
             <label for="answer.answerID">{{ answer.content }}</label>
         </li>
-        <button ng-show="testOneNext" ng-click="storeStudentAnswer(question.questionID, answers, optionSelected); nextTestQuestion()">Next</button>
-        <button ng-show="testTwoNext" ng-click="storeStudentAnswer(question.questionID, answers, optionSelected); anotherTestQuestion()">Next</button>
+        <button class="button" ng-show="testOneNext" ng-click="storeStudentAnswer(question.questionID, answers, optionSelected); nextTestQuestion()">Next</button>
+        <button class="button" ng-show="testTwoNext" ng-click="storeStudentAnswer(question.questionID, answers, optionSelected); anotherTestQuestion()">Next</button>
     </ul>
 </div>
 <div ng-show="finishedTestOne">
     <p>You have completed Part One of the Taxi-Pro Course. Feel free to take a short break before continuing to Part Two.</p>
-    <button ng-click="showVid()">Proceed to Part Two</button>
+    <button class="button" ng-click="showVid()">Proceed to Part Two</button>
     
 </div>
 <div ng-show="allDone">
     <p>You have completed the Taxi-Pro Course. Please alert a staff member that you are finished.</p>
     <p><i>Below is for office use only</i></p>
-    <button ng-click="saveCourse(); adminOptions()">Save and Quit</button>
-    <button ng-click="saveCourse(); viewStudentProfile()">View Results</button>
+    <button class="button" ng-click="saveCourse(); adminOptions()">Save and Quit</button>
+    <button class="button" ng-click="saveCourse(); viewStudentProfile()">View Results</button>
 </div>

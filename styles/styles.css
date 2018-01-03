@@ -1,5 +1,39 @@
-a{
-    
+html, body {
+    background-color: #b0bec5;
+    color: #37474f;
+    height: 100%;
+}
+
+a {
+    text-decoration: none;
+    color: #ffeb3b;
+}
+
+a:hover {
+    color: #37474f;
+}
+
+.button {
+    align-content: center;
+    margin: 25px;
+    padding: 10px 25px;
+    background-color: #ffeb3b;
+}
+
+li {
+    list-style: none;
+}
+
+nav {
+    background-color: #808e95;
+    font-size: 1.2em;
+    font-weight: 500;
+    padding: 15px;
+}
+
+nav li {
+    display: inline;
+    padding: 0 15px 0 0;
 }
 
 .align-left {
@@ -7,15 +41,39 @@ a{
 }
 
 .align-right {
-    margin: 0 0 0 70px;
+    margin: 0 0 0 150px;
+    text-align: right;
   }
 
-.adminOpt {
-    align-content: center;
-    margin: 25px;
-    padding: 10px 25px;
-    background-color: #ffeb3b
+    
+.form {
+    background-color: #808e95;
+    color: #ffeb3b;
+
 }
-li {
-    list-style-type: none;
+
+input {
+    margin: 10px 15px 5px 5px
 }
+
+.card {
+    background-color: #808e95;
+    margin: 5px 0 5px 5px;
+    padding: 5px 15px;
+    color: #ffeb3b;
+    font-weight: 500;
+    letter-spacing: .05em;
+}
+
+.answer {
+    list-style: none;
+    display: block;
+}
+
+ li > input {
+    display: inline;
+ }
+
+ .block {
+     display: block;
+ }
